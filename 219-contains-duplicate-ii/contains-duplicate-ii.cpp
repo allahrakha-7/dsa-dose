@@ -6,21 +6,23 @@ public:
             return false;
         }
 
-        unordered_set<int> seen;
+        unordered_map <int, int> seen_indices;
 
         for (int i = 0; i < nums.size(); i++) {
 
-            if (i > k) {
-                
-                seen.erase(nums[i - k - 1]);
+            int currentNumber = nums[i];
 
+            if (seen_indices.count(currentNumber)) {
+
+               int oldIndex = seen_indices[currentNumber];
+
+               if (i - oldIndex <= k) {
+                
+                    return true;
+
+               }
             }
-            
-            if (seen.find(nums[i]) != seen.end()) {
-                return true;
-        
-            }
-        seen.insert(nums[i]);
+            seen_indices[currentNumber] = i;
         }
         return false;
     }
