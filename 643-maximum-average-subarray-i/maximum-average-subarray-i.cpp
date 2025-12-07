@@ -9,7 +9,6 @@ public:
             windowSum += nums[i];
 
         }
-
         double maxAverage = (double) windowSum / k;
 
         for (int i = k; i < nums.size(); i++) {
